@@ -1,6 +1,19 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
+
 
 const app = express()
 
-export default app
+// middleware
+app.use(express.json())
 
+
+// POST: /api/user/create-user
+
+app.get('/', (req: Request, res: Response) => {
+  res.send({
+    status: true,
+    message: 'Server Live ⚡',
+  })
+})
+
+export default app
