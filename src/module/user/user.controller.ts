@@ -4,7 +4,8 @@ import User from "./user.model";
 
 const createUser = async(req:Request, res:Response)=>{
      
-    const payload = req.body;
+    try{
+        const payload = req.body;
 
     const result = await User.create(payload);
 
@@ -12,6 +13,14 @@ const createUser = async(req:Request, res:Response)=>{
         message: 'User create successfully',
         data: result,
     })
+    }
+    catch(error){
+        res.json({
+            status: false,
+            message: 'something went wrong',
+            error,
+        })
+    }
 }
 
 export const userController ={
